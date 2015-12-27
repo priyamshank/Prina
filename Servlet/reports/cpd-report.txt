@@ -1,0 +1,905 @@
+Found a 44 line (233 tokens) duplication in the following files: 
+Starting at line 171 of /home/priyamvada/workspaceprojectassign1/Servlet/src/JSONData.java
+Starting at line 148 of /home/priyamvada/workspaceprojectassign1/Servlet/src/DatabaseAccess.java
+
+						p.dumpData(result,out);
+		
+						
+						
+					}
+				} else {
+		
+					String scriptregex = "\"([^\"]*)\"";
+					Pattern p1 = Pattern.compile(scriptregex,
+							Pattern.CASE_INSENSITIVE);
+					Matcher m1 = p1.matcher(a); 
+					if (m1.find()) {
+//						out.println(docType
+//								+ "<h4>Found Quotes! Running conjunctive query for you!!</h4><br>");
+						String conjnorm[] = m1.group(1).split("\\s+");
+						//out.println(conjnorm.length);
+						//out.println(b.length);
+						if(lang.contains("english"))
+						Didumean = p.NormProcess(conjnorm,lang);
+						else{
+							Didumean=p.NormProcess(conjnorm);
+						}
+						if(Didumean.size()<conjnorm.length){
+							out.print("Did you mean: ");
+							StringBuilder rl=new StringBuilder();
+							StringBuilder corrected=new StringBuilder();
+							Didumean1 = p.Process(conjnorm,lang);
+							//rl.append(" "+'"');
+							for (int i = 0; i < Didumean1.size(); i++){
+								if(i==0)
+								rl.append("%22");
+								rl.append(Didumean1.get(i));
+								if(i<Didumean1.size()-1)
+								rl.append("+");
+								corrected.append(" ");
+								corrected.append(Didumean1.get(i));
+								
+								
+							}
+								rl.append("%22");
+								rl.append("&ressize="+ressize);
+								rl.append("&lang="+lang);
+		
+								out.println("<a href=http://localhost:1234/Servlet/DatabaseAccess?query="+rl.toString()+">" +corrected+"</a>");
+=====================================================================
+Found a 29 line (167 tokens) duplication in the following files: 
+Starting at line 184 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/StopWordRemoval.java
+Starting at line 339 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/Stemmer.java
+
+	   public String stemWords(String stringTerm) throws Exception{
+	    	
+		     char[] w = new char[501];
+		   	 Stemmer s = new Stemmer();
+		     InputStream in = new ByteArrayInputStream(stringTerm.getBytes());
+			 BufferedReader br = new BufferedReader(new InputStreamReader(in));
+			 String stemmed_term="";
+			 try{
+				while(true){
+					/* Stemming the words given by user */
+					int ch = br.read();					
+					if (Character.isLetter((char) ch)){
+						int j = 0;
+						while(true)
+						{  
+		                	ch = Character.toLowerCase((char) ch);
+							w[j] = (char) ch;
+							if (j < 500) j++;
+							ch = br.read();
+							if (!Character.isLetter((char) ch))
+							{
+							   /* to test add(char ch) */
+							   for (int c = 0; c < j; c++) 
+								   {
+								   s.add(w[c]);
+								   }
+
+							   s.stem();
+							   stemmed_term = s.toString();
+=====================================================================
+Found a 23 line (138 tokens) duplication in the following files: 
+Starting at line 229 of /home/priyamvada/workspaceprojectassign1/Servlet/src/JSONData.java
+Starting at line 210 of /home/priyamvada/workspaceprojectassign1/Servlet/src/DatabaseAccess.java
+
+							else{
+						//	out.println("german called");
+							Didumean=p.NormProcess(disj);}
+						
+						if(Didumean.size()<disj.length){
+							out.print("Did you mean: ");
+							StringBuilder rl=new StringBuilder();
+							StringBuilder corrected=new StringBuilder();
+							Didumean1 = p.Process(disj,lang);
+							for (int i = 0; i < Didumean1.size(); i++){
+								
+								
+								
+								rl.append(Didumean1.get(i));
+								if(i<Didumean1.size()-1)
+								rl.append("+");
+								corrected.append(" ");
+								corrected.append(Didumean1.get(i));
+							}
+								rl.append("&ressize="+ressize);
+								rl.append("&lang="+lang);
+		
+								out.println("<a href=http://localhost:1234/Servlet/DatabaseAccess?query="+rl.toString()+">" +corrected+"</a>");
+=====================================================================
+Found a 18 line (113 tokens) duplication in the following files: 
+Starting at line 85 of /home/priyamvada/workspaceprojectassign1/Servlet/src/JSONData.java
+Starting at line 75 of /home/priyamvada/workspaceprojectassign1/Servlet/src/DatabaseAccess.java
+
+				Processing p = new Processing();
+				SearchQuery sq=new SearchQuery();
+				boolean retval=sq.QuerySearch(a,out,lang,ressize);
+				if(retval){
+				if (b[0].toLowerCase().indexOf(search.toLowerCase()) != -1) {
+		
+					//out.println(docType + "<h4>We found the keyword site </h4><br>");
+					String site = b[0].substring(b[0].lastIndexOf(":") + 1);
+					//out.println("website is " + site);
+					StringBuilder s = new StringBuilder();
+					for (int i = 1; i < b.length; i++) {
+						s.append(b[i]);
+						s.append(' ');
+					}
+					
+				//	out.println("the query terms are " + s.toString() + "<br>");
+				//	String con_dis_site[]=s.toString().split("\\s+");
+					String scriptregex1 = "\"([^\"]*)\"";
+=====================================================================
+Found a 30 line (85 tokens) duplication in the following files: 
+Starting at line 74 of /home/priyamvada/workspaceprojectassign1/Servlet/src/New.java
+Starting at line 115 of /home/priyamvada/workspaceprojectassign1/Servlet/src/New.java
+
+         ResultSet rs = stmt.executeQuery(sqlStr);
+         out.println(docType+"<h4>connected to db</h4>");
+        
+
+         
+         int rank=1;
+         // Extract data from result set
+         while(rs.next()){
+            //Retrieve by column name
+            //int docid  = rs.getInt("docid");
+            //String url = rs.getString("url");
+        	
+            String url = rs.getString("url");
+            float score = rs.getFloat("score");
+            
+            out.println("Rank: "+rank+"<br>");
+           
+            //Display values
+           // out.println("docid: " + docid + "<br>");
+            //out.println(" url: " + url + "<br>");
+            
+            out.println("url : " + url + "<br>");
+            out.println("score: " + score + "<br>");
+            rank++;
+            out.println("<br>");
+            
+         }
+         
+         rs.close();
+     	   }
+=====================================================================
+Found a 13 line (71 tokens) duplication in the following files: 
+Starting at line 102 of /home/priyamvada/workspaceprojectassign1/Servlet/src/JSONData.java
+Starting at line 92 of /home/priyamvada/workspaceprojectassign1/Servlet/src/DatabaseAccess.java
+
+					String scriptregex1 = "\"([^\"]*)\"";
+					Pattern p1 = Pattern.compile(scriptregex1,
+							Pattern.CASE_INSENSITIVE);
+					Matcher m1 = p1.matcher(s);
+					if (m1.find()) {
+//						out.println(docType
+//								+ "<h4>we found quotation marks in your query</h4><br>");
+//						out.println(docType
+//								+ "<h4>Running Conjunctive query for you!!</h4><br>");
+						String siteop[] = m1.group(1).split("\\s+");
+						if(lang.contains("english"))
+						Didumean = p.NormProcess(siteop,lang);
+						else
+=====================================================================
+Found a 19 line (65 tokens) duplication in the following files: 
+Starting at line 261 of /home/priyamvada/workspaceprojectassign1/Servlet/src/JSONData.java
+Starting at line 238 of /home/priyamvada/workspaceprojectassign1/Servlet/src/DatabaseAccess.java
+
+						p.dumpData(result,out);
+					}
+					out.println("</center>");
+					out.println("</body>");
+					out.println("</html>");
+					out.close();
+					stmt.close();
+					conn.close();
+				}
+				}
+			} catch (SQLException se) {
+				// Handle errors for JDBC
+				se.printStackTrace();
+			} catch (Exception e) {
+				// Handle errors for Class.forName
+				e.printStackTrace();
+			}
+		
+		}
+=====================================================================
+Found a 1 line (55 tokens) duplication in the following files: 
+Starting at line 49 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/StopWordRemoval.java
+Starting at line 68 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/StopWordRemoval.java
+
+              "7.", "8.", "9.", "12", "13", "14", ".", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "{", "}", "[", "]", ":", ";", ",", "<", ".", ">", "/", "?", "_", "-", "+", "=",};
+=====================================================================
+Found a 10 line (52 tokens) duplication in the following files: 
+Starting at line 49 of /home/priyamvada/workspaceprojectassign1/Servlet/src/JSONData.java
+Starting at line 40 of /home/priyamvada/workspaceprojectassign1/Servlet/src/DatabaseAccess.java
+
+			List<String> Didumean = null;
+			List<String> Didumean1 = null;
+			response.setContentType("text/html");
+			PrintWriter out = response.getWriter();
+			String title = "Prina Results";
+			String docType = "<!doctype html public \"-//w3c//dtd html 4.0 "
+					+ "transitional//en\">\n";
+			out.println(docType + "<html>\n" + "<head><title>" + title
+					+ "</title></head>\n" 
+					+ "<h1 align=\"center\">" + title + "</h1>\n");
+=====================================================================
+Found a 13 line (52 tokens) duplication in the following files: 
+Starting at line 131 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/StopWordRemoval.java
+Starting at line 147 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/StopWordRemoval.java
+
+            	   s1 = s1.replaceAll("[^a-zA-Z]","");
+            	   frequency = (Integer) map.get(s1);
+                   if (frequency == null) 
+                	   
+                   {
+                       frequency = a;
+                   } else 
+                   {
+                       int value = frequency.intValue();
+                       frequency = new Integer(value + 1);
+                   }
+                   map.put(s1, frequency);
+               }
+=====================================================================
+Found a 7 line (51 tokens) duplication in the following files: 
+Starting at line 198 of /home/priyamvada/workspaceprojectassign1/Servlet/src/JSONData.java
+Starting at line 241 of /home/priyamvada/workspaceprojectassign1/Servlet/src/JSONData.java
+
+							rl.append(Didumean1.get(i));
+							if(i<Didumean1.size()-1)
+							rl.append("+");
+							corrected.append(" ");
+							corrected.append(Didumean1.get(i));
+						}
+							rl.append("&ressize="+ressize);
+=====================================================================
+Found a 10 line (50 tokens) duplication in the following files: 
+Starting at line 21 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/QueryProcessing.java
+Starting at line 91 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/QueryProcessing.java
+
+	public String siteconj(List Didumean,String lang,int ressize,String site){
+		String query = "select subresult.docid, sum(subresult.combinedscore)as score,url from (select docid,combinedscore,term from fea1 where term in(";
+		query += "'" + Didumean.get(0) + "'";
+		for (int i = 1; i < Didumean.size(); ++i) {
+			// System.out.print(i);
+
+			query += ", '" + Didumean.get(i) + "'";
+		}
+
+		query += ") and docid in (select doc_id from documents where SUBSTRING(url FROM '.*://([^/]*)' ) like ";
+=====================================================================
+Found a 2 line (47 tokens) duplication in the following files: 
+Starting at line 48 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/StopWordRemoval.java
+Starting at line 67 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/StopWordRemoval.java
+
+    	      "ihrer", "ihrem", "alle", "vom", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "1.", "2.", "3.", "4.", "5.", "6.", "11",
+              "7.", "8.", "9.", "12", "13", "14", ".", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "{", "}", "[", "]", ":", ";", ",", "<", ".", ">", "/", "?", "_", "-", "+", "=",};
+=====================================================================
+Found a 9 line (45 tokens) duplication in the following files: 
+Starting at line 142 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/QueryProcessing.java
+Starting at line 151 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/QueryProcessing.java
+
+		"and f.docid in (select docid from fea1 f where term in ("+
+		"'" + disj.get(0) + "'";
+		for (int i = 1; i < disj.size(); ++i) {
+			// System.out.print(i);
+
+			query += ", '" + disj.get(i) + "'";
+		}
+
+		query += ") "+
+=====================================================================
+Found a 8 line (44 tokens) duplication in the following files: 
+Starting at line 138 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/Processing.java
+Starting at line 146 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/Processing.java
+
+				maxquery += "'" + words.get(0) + "'";
+				for (int i1 = 1; i1 < words.size(); ++i1) {
+					// System.out.print(i);
+
+					maxquery += ", '" + words.get(i1) + "'";
+				}
+
+				maxquery += ")";
+=====================================================================
+Found a 8 line (44 tokens) duplication in the following files: 
+Starting at line 23 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/QueryProcessing.java
+Starting at line 57 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/QueryProcessing.java
+
+		query += "'" + Didumean.get(0) + "'";
+		for (int i = 1; i < Didumean.size(); ++i) {
+			// System.out.print(i);
+
+			query += ", '" + Didumean.get(i) + "'";
+		}
+
+		query += ") group by term,docid,"+pscore+")AS subresult,documents "
+=====================================================================
+Found a 6 line (44 tokens) duplication in the following files: 
+Starting at line 11 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/QueryProcessing.java
+Starting at line 45 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/QueryProcessing.java
+
+		sqlStr += "'" + Didumean.get(0) + "'";
+		for (int i = 1; i < Didumean.size(); ++i) {
+
+			sqlStr += ",'" + Didumean.get(i) + "'";
+		}
+		sqlStr += ") ";
+=====================================================================
+Found a 7 line (42 tokens) duplication in the following files: 
+Starting at line 26 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/Processing.java
+Starting at line 48 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/Processing.java
+
+		List<String> present = new ArrayList<String>();
+		String wf=null;
+		Statement stmt = conn.createStatement();
+		for (int bi = 0; bi < b.length; bi++) {
+			
+				
+			wf = (b[bi]);
+=====================================================================
+Found a 6 line (42 tokens) duplication in the following files: 
+Starting at line 79 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/StopWordRemoval.java
+Starting at line 102 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/StopWordRemoval.java
+
+				s1 = content.next();
+				s1 = s1.toLowerCase();
+				for (int i = 0; i < stopwords.length; i++)
+	            {
+	                if (s1.equalsIgnoreCase(stopwords[i])) 
+	                {
+=====================================================================
+Found a 9 line (41 tokens) duplication in the following files: 
+Starting at line 62 of /home/priyamvada/workspaceprojectassign1/Servlet/src/JSONData.java
+Starting at line 64 of /home/priyamvada/workspaceprojectassign1/Servlet/src/DatabaseAccess.java
+
+				final String DB_URL = "jdbc:postgresql://localhost:5432/postgres";
+				final String USER = "postgres";
+				final String PASS = "postgres";
+				// Register JDBC driver
+				Class.forName("org.postgresql.Driver");
+							// Open a connection
+				Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+							
+				stmt = conn.createStatement();
+=====================================================================
+Found a 14 line (41 tokens) duplication in the following files: 
+Starting at line 36 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/Processing.java
+Starting at line 58 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/Processing.java
+
+			wordfind += "'" + wf + "'";
+			// out.println(wordfind);
+			ResultSet wf1 = stmt.executeQuery(wordfind);
+			if (wf1.next()) {
+				present.add(wf);
+				
+				//System.out.println(Didumean);
+			} 
+		}
+		return present;
+	}
+		
+	
+	public List<String> Process(String[] b,String lang) throws SQLException,
+=====================================================================
+Found a 9 line (40 tokens) duplication in the following files: 
+Starting at line 131 of /home/priyamvada/workspaceprojectassign1/Servlet/src/JSONData.java
+Starting at line 164 of /home/priyamvada/workspaceprojectassign1/Servlet/src/JSONData.java
+
+					String query=qp.sitedisj(Didumean, lang, ressize,site);
+					//out.println(query);
+					List<SE_Result> result = p.getSearchResult(query);
+
+					Result_cal(result);
+					cw_cal(Didumean);
+					stat_cal(Didumean);
+					print(mainObj,out);
+				}
+=====================================================================
+Found a 6 line (39 tokens) duplication in the following files: 
+Starting at line 250 of /home/priyamvada/workspaceprojectassign1/Servlet/src/JSONData.java
+Starting at line 232 of /home/priyamvada/workspaceprojectassign1/Servlet/src/DatabaseAccess.java
+
+								out.println("<a href=http://localhost:1234/Servlet/DatabaseAccess?query="+rl.toString()+">" +corrected+"</a>");
+		
+						}
+						String sqlStr=qp.disjquery(Didumean, lang, ressize);
+						//out.println(sqlStr);
+						List<SE_Result> result = p.getSearchResult(sqlStr);
+=====================================================================
+Found a 7 line (39 tokens) duplication in the following files: 
+Starting at line 210 of /home/priyamvada/workspaceprojectassign1/Servlet/src/JSONData.java
+Starting at line 191 of /home/priyamvada/workspaceprojectassign1/Servlet/src/DatabaseAccess.java
+
+								out.println("<a href=http://localhost:1234/Servlet/DatabaseAccess?query="+rl.toString()+">" +corrected+"</a>");
+		
+						}
+		
+						String query=qp.conjquery(Didumean, lang, ressize);
+						//out.println(query);
+						List<SE_Result> result = p.getSearchResult(query);
+=====================================================================
+Found a 9 line (37 tokens) duplication in the following files: 
+Starting at line 48 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/ReadUrl.java
+Starting at line 105 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/ReadUrl.java
+
+					depth = scanner.nextInt();
+					isreq = true;
+				} else {
+					System.out.println("Please enter a number ");
+					isreq = false;
+					scanner.next();
+				}
+
+			} while (!(isreq));
+=====================================================================
+Found a 7 line (36 tokens) duplication in the following files: 
+Starting at line 188 of /home/priyamvada/workspaceprojectassign1/Servlet/src/DatabaseAccess.java
+Starting at line 229 of /home/priyamvada/workspaceprojectassign1/Servlet/src/DatabaseAccess.java
+
+								rl.append("&ressize="+ressize);
+								rl.append("&lang="+lang);
+		
+								out.println("<a href=http://localhost:1234/Servlet/DatabaseAccess?query="+rl.toString()+">" +corrected+"</a>");
+		
+						}
+						String sqlStr=qp.disjquery(Didumean, lang, ressize);
+=====================================================================
+Found a 11 line (36 tokens) duplication in the following files: 
+Starting at line 47 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/Bfs.java
+Starting at line 64 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/Bfs.java
+
+			que11.add(url);
+			jd.putvalue_unvisited(url, 0);
+			jd.put_document_ids(url);
+			// jd.linksid(seed,url);
+			System.out.println(url);
+
+		}
+		new_unique.add(url);
+	}
+
+	void dequeue0(String str, Datatransfer jd) throws Exception {
+=====================================================================
+Found a 13 line (35 tokens) duplication in the following files: 
+Starting at line 106 of /home/priyamvada/workspaceprojectassign1/Servlet/src/DatabaseAccess.java
+Starting at line 133 of /home/priyamvada/workspaceprojectassign1/Servlet/src/DatabaseAccess.java
+
+						if(Didumean.isEmpty()){
+							out.println("Your search query did not match any documents."
+									+"<br><br>"
+
+							+"Suggestions:"
+								+"<br>"
+							    +"Make sure that all words are spelled correctly. <br>"
+							    +"Try different keywords.<br>"
+							    +"Try more general keywords.<br>"
+							    +"Try fewer keywords.<br>");
+							    
+						}
+						String query=qp.sitedisj(Didumean, lang, ressize,site);
+=====================================================================
+Found a 13 line (35 tokens) duplication in the following files: 
+Starting at line 131 of /home/priyamvada/workspaceprojectassign1/Servlet/src/JSONData.java
+Starting at line 214 of /home/priyamvada/workspaceprojectassign1/Servlet/src/JSONData.java
+
+					String query=qp.conjquery(Didumean, lang, ressize);
+					//out.println(query);
+					List<SE_Result> result = p.getSearchResult(query);
+					
+					Result_cal(result);
+					cw_cal(Didumean);
+					stat_cal(Didumean);
+					print(mainObj,out);
+				}
+
+				else {
+					//out.println("<h4>Doing Disjunctive query for you!!</h4><br>");
+					String disj[] = a.split("\\s+");
+=====================================================================
+Found a 5 line (35 tokens) duplication in the following files: 
+Starting at line 55 of /home/priyamvada/workspaceprojectassign1/Servlet/src/New.java
+Starting at line 175 of /home/priyamvada/workspaceprojectassign1/Servlet/src/JSONData.java
+
+				String scriptregex = "\"([^\"]*)\"";
+				Pattern p1 = Pattern.compile(scriptregex,
+						Pattern.CASE_INSENSITIVE);
+				Matcher m1 = p1.matcher(a);
+				if (m1.find()) {
+=====================================================================
+Found a 13 line (34 tokens) duplication in the following files: 
+Starting at line 94 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/Datatransfer.java
+Starting at line 124 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/Datatransfer.java
+
+			preparedStatement.setString(1, str);
+			// preparedStatement.setInt(2, i);
+			preparedStatement.executeUpdate();
+			preparedStatement.close();
+		} catch (SQLException e) {
+
+			System.out.println(e.getMessage());
+		}
+
+	}
+
+	// populate links table
+	public void putlink(String from_url, String to_url) throws SQLException,
+=====================================================================
+Found a 9 line (32 tokens) duplication in the following files: 
+Starting at line 164 of /home/priyamvada/workspaceprojectassign1/Servlet/src/JSONData.java
+Starting at line 214 of /home/priyamvada/workspaceprojectassign1/Servlet/src/JSONData.java
+
+					String query=qp.conjquery(Didumean, lang, ressize);
+					//out.println(query);
+					List<SE_Result> result = p.getSearchResult(query);
+					
+					Result_cal(result);
+					cw_cal(Didumean);
+					stat_cal(Didumean);
+					print(mainObj,out);
+				}
+=====================================================================
+Found a 3 line (32 tokens) duplication in the following files: 
+Starting at line 71 of /home/priyamvada/workspaceprojectassign1/Servlet/src/JSONData.java
+Starting at line 54 of /home/priyamvada/workspaceprojectassign1/Servlet/src/DatabaseAccess.java
+
+				int ressize = Integer.parseInt(request.getParameter("ressize"));
+				String lang = request.getParameter("lang");
+				String a = request.getParameter("query");
+=====================================================================
+Found a 5 line (31 tokens) duplication in the following files: 
+Starting at line 36 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/Processing.java
+Starting at line 96 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/Processing.java
+
+			wordfind += "'" + wf + "'";
+			// out.println(wordfind);
+			ResultSet wf1 = stmt.executeQuery(wordfind);
+			if (wf1.next()) {
+				present.add(wf);
+=====================================================================
+Found a 4 line (31 tokens) duplication in the following files: 
+Starting at line 11 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/QueryProcessing.java
+Starting at line 81 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/QueryProcessing.java
+
+		sqlStr += "'" + Didumean.get(0) + "'";
+		for (int i = 1; i < Didumean.size(); ++i) {
+
+			sqlStr += ", '" + Didumean.get(i) + "'";
+=====================================================================
+Found a 5 line (30 tokens) duplication in the following files: 
+Starting at line 170 of /home/priyamvada/workspaceprojectassign1/Servlet/src/DatabaseAccess.java
+Starting at line 214 of /home/priyamvada/workspaceprojectassign1/Servlet/src/DatabaseAccess.java
+
+						if(Didumean.size()<disj.length){
+							out.print("Did you mean: ");
+							StringBuilder rl=new StringBuilder();
+							StringBuilder corrected=new StringBuilder();
+							Didumean1 = p.Process(disj,lang);
+=====================================================================
+Found a 8 line (30 tokens) duplication in the following files: 
+Starting at line 118 of /home/priyamvada/workspaceprojectassign1/Servlet/src/DatabaseAccess.java
+Starting at line 145 of /home/priyamvada/workspaceprojectassign1/Servlet/src/DatabaseAccess.java
+
+						String query=qp.sitedisj(Didumean, lang, ressize,site);
+					//	out.println(query);
+						List<SE_Result> result = p.getSearchResult(query);
+						p.dumpData(result,out);
+		
+						
+						
+					}
+=====================================================================
+Found a 5 line (30 tokens) duplication in the following files: 
+Starting at line 189 of /home/priyamvada/workspaceprojectassign1/Servlet/src/JSONData.java
+Starting at line 232 of /home/priyamvada/workspaceprojectassign1/Servlet/src/JSONData.java
+
+					if(Didumean.size()<disj.length){
+						out.print("Did you mean: ");
+						StringBuilder rl=new StringBuilder();
+						StringBuilder corrected=new StringBuilder();
+						Didumean1 = p.Process(disj,lang);
+=====================================================================
+Found a 7 line (30 tokens) duplication in the following files: 
+Starting at line 138 of /home/priyamvada/workspaceprojectassign1/Servlet/src/JSONData.java
+Starting at line 121 of /home/priyamvada/workspaceprojectassign1/Servlet/src/DatabaseAccess.java
+
+						p.dumpData(result,out);
+						
+		
+					} else {
+					//	out.println("<h4>We did not find quotes hence running Disjunctive query for you!!</h4> <br>");
+						String siteopdisj[] = s.toString().split("\\s+");
+						if(lang.contains("english")){
+=====================================================================
+Found a 6 line (30 tokens) duplication in the following files: 
+Starting at line 32 of /home/priyamvada/workspaceprojectassign1/Servlet/src/New.java
+Starting at line 54 of /home/priyamvada/workspaceprojectassign1/Servlet/src/JSONData.java
+
+		String docType = "<!doctype html public \"-//w3c//dtd html 4.0 "
+				+ "transitional//en\">\n";
+		out.println(docType + "<html>\n" + "<head><title>" + title
+				+ "</title></head>\n" + "<body bgcolor=\"#f0f0f0\">\n"
+				+ "<h1 align=\"center\">" + title + "</h1>\n");
+		try {
+=====================================================================
+Found a 6 line (30 tokens) duplication in the following files: 
+Starting at line 86 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/StopWordRemoval.java
+Starting at line 111 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/StopWordRemoval.java
+
+	                }
+	            }
+				for (int i = 0; i < germanstopwords.length; i++)
+	            {
+	                if (s1.equalsIgnoreCase(germanstopwords[i])) 
+	                {
+=====================================================================
+Found a 5 line (29 tokens) duplication in the following files: 
+Starting at line 101 of /home/priyamvada/workspaceprojectassign1/Servlet/src/DatabaseAccess.java
+Starting at line 162 of /home/priyamvada/workspaceprojectassign1/Servlet/src/DatabaseAccess.java
+
+						String conjnorm[] = m1.group(1).split("\\s+");
+						//out.println(conjnorm.length);
+						//out.println(b.length);
+						if(lang.contains("english"))
+						Didumean = p.NormProcess(conjnorm,lang);
+=====================================================================
+Found a 6 line (29 tokens) duplication in the following files: 
+Starting at line 147 of /home/priyamvada/workspaceprojectassign1/Servlet/src/JSONData.java
+Starting at line 142 of /home/priyamvada/workspaceprojectassign1/Servlet/src/DatabaseAccess.java
+
+							    +"Try fewer keywords.<br>");
+							    
+						}
+						String query=qp.sitedisj(Didumean, lang, ressize,site);
+					//	out.println(query);
+						List<SE_Result> result = p.getSearchResult(query);
+=====================================================================
+Found a 6 line (29 tokens) duplication in the following files: 
+Starting at line 115 of /home/priyamvada/workspaceprojectassign1/Servlet/src/JSONData.java
+Starting at line 115 of /home/priyamvada/workspaceprojectassign1/Servlet/src/DatabaseAccess.java
+
+							    +"Try fewer keywords.<br>");
+							    
+						}
+						String query=qp.siteconj(Didumean, lang, ressize, site);
+					//	out.println(query);
+						List<SE_Result> result = p.getSearchResult(query);
+=====================================================================
+Found a 3 line (29 tokens) duplication in the following files: 
+Starting at line 111 of /home/priyamvada/workspaceprojectassign1/Servlet/src/JSONData.java
+Starting at line 182 of /home/priyamvada/workspaceprojectassign1/Servlet/src/JSONData.java
+
+					String conjnorm[] = m1.group(1).split("\\s+");
+					if(lang.contains("english"))
+					Didumean = p.NormProcess(conjnorm,lang);
+=====================================================================
+Found a 2 line (28 tokens) duplication in the following files: 
+Starting at line 11 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/QueryProcessing.java
+Starting at line 23 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/QueryProcessing.java
+Starting at line 180 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/QueryProcessing.java
+Starting at line 190 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/QueryProcessing.java
+
+		sqldf += "'" + Didumean.get(0) + "'";
+		for (int i = 1; i < Didumean.size(); ++i) {
+=====================================================================
+Found a 6 line (28 tokens) duplication in the following files: 
+Starting at line 60 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/Regexmatch.java
+Starting at line 87 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/Regexmatch.java
+
+							if (q == 00) {
+								bfs.enqueue1(url, toadd4);
+							} else {
+								bfs.enqueue0(url, toadd4);
+							}
+						}
+=====================================================================
+Found a 13 line (28 tokens) duplication in the following files: 
+Starting at line 77 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/SearchQuery.java
+Starting at line 106 of /home/priyamvada/workspaceprojectassign1/Servlet/src/DatabaseAccess.java
+
+						if(Didumean.isEmpty()){
+							out.println("Your search query did not match any documents."
+									+"<br><br>"
+
+							+"Suggestions:"
+								+"<br>"
+							    +"Make sure that all words are spelled correctly. <br>"
+							    +"Try different keywords.<br>"
+							    +"Try more general keywords.<br>"
+							    +"Try fewer keywords.<br>");
+							    
+						}
+						String query=qp.siteconj(Didumean, lang, ressize, site);
+=====================================================================
+Found a 4 line (28 tokens) duplication in the following files: 
+Starting at line 37 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/Stemmer.java
+Starting at line 52 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/Stemmer.java
+
+	      {  char[] new_b = new char[i+wLen+INC];
+	         for (int c = 0; c < i; c++) new_b[c] = b[c];
+	         b = new_b;
+	      }
+=====================================================================
+Found a 11 line (27 tokens) duplication in the following files: 
+Starting at line 153 of /home/priyamvada/workspaceprojectassign1/Servlet/src/New.java
+Starting at line 248 of /home/priyamvada/workspaceprojectassign1/Servlet/src/DatabaseAccess.java
+
+			} catch (SQLException se) {
+				// Handle errors for JDBC
+				se.printStackTrace();
+			} catch (Exception e) {
+				// Handle errors for Class.forName
+				e.printStackTrace();
+			}
+		
+		}
+
+}
+=====================================================================
+Found a 3 line (27 tokens) duplication in the following files: 
+Starting at line 74 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/Bfs.java
+Starting at line 86 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/Bfs.java
+
+	void dequeue1(String str, Datatransfer jd) throws Exception {
+		String a = (sdf.format(date));
+		System.out.println("Adding from dequeue 1" + que1.add(str));
+=====================================================================
+Found a 9 line (27 tokens) duplication in the following files: 
+Starting at line 73 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/Datatransfer.java
+Starting at line 98 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/Datatransfer.java
+Starting at line 187 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/Datatransfer.java
+
+			preparedStatement_ins_doc.close();
+
+		} catch (SQLException e) {
+
+			System.out.println(e.getMessage());
+		}
+
+	}
+	public void putlang(int docid,String flag) throws SQLException{
+=====================================================================
+Found a 12 line (27 tokens) duplication in the following files: 
+Starting at line 77 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/SearchQuery.java
+Starting at line 92 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/SearchQuery.java
+
+			if(result.isEmpty()){
+				out.println("Your search query did not match any documents."
+						+"<br><br>"
+
+				+"Suggestions:"
+					+"<br>"
+				    +"Make sure that all words are spelled correctly. <br>"
+				    +"Try different keywords.<br>"
+				    +"Try more general keywords.<br>"
+				    +"Try fewer keywords.<br>");
+				    
+			}else{
+=====================================================================
+Found a 3 line (27 tokens) duplication in the following files: 
+Starting at line 231 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/Stemmer.java
+Starting at line 282 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/Stemmer.java
+
+	   private final void step5()
+	   {   if (k == 0) return; /* for Bug 1 */ switch (b[k-1])
+	       {  case 'a': if (ends("al")) break; return;
+=====================================================================
+Found a 6 line (27 tokens) duplication in the following files: 
+Starting at line 102 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/Stemmer.java
+Starting at line 115 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/Stemmer.java
+
+	         while(true)
+	         {  if (i > j) return n;
+	            if (! cons(i)) break;
+	            i++;
+	         }
+	         i++;
+=====================================================================
+Found a 10 line (26 tokens) duplication in the following files: 
+Starting at line 221 of /home/priyamvada/workspaceprojectassign1/Servlet/src/JSONData.java
+Starting at line 198 of /home/priyamvada/workspaceprojectassign1/Servlet/src/DatabaseAccess.java
+
+						p.dumpData(result,out);
+		
+						
+					}
+		
+					else {
+						//out.println("<h4>Doing Disjunctive query for you!!</h4><br>");
+						String disj[] = a.split("\\s+");
+						//out.println(lang);
+						if(lang.contains("english")){
+=====================================================================
+Found a 9 line (26 tokens) duplication in the following files: 
+Starting at line 153 of /home/priyamvada/workspaceprojectassign1/Servlet/src/New.java
+Starting at line 271 of /home/priyamvada/workspaceprojectassign1/Servlet/src/JSONData.java
+
+		} catch (SQLException se) {
+			// Handle errors for JDBC
+			se.printStackTrace();
+		} catch (Exception e) {
+			// Handle errors for Class.forName
+			e.printStackTrace();
+		}
+
+	}
+=====================================================================
+Found a 8 line (26 tokens) duplication in the following files: 
+Starting at line 35 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/PageRank1.java
+Starting at line 245 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/Datatransfer.java
+
+			preparedStatement = c.prepareStatement(ins_rec_que00);
+		} catch (SQLException e) {
+
+		}
+
+		// execute insert SQL statement
+		ResultSet rs = preparedStatement.executeQuery();
+		while (rs.next()) {
+=====================================================================
+Found a 11 line (25 tokens) duplication in the following files: 
+Starting at line 118 of /home/priyamvada/workspaceprojectassign1/Servlet/src/DatabaseAccess.java
+Starting at line 195 of /home/priyamvada/workspaceprojectassign1/Servlet/src/DatabaseAccess.java
+
+						String query=qp.conjquery(Didumean, lang, ressize);
+						//out.println(query);
+						List<SE_Result> result = p.getSearchResult(query);
+						p.dumpData(result,out);
+		
+						
+					}
+		
+					else {
+						//out.println("<h4>Doing Disjunctive query for you!!</h4><br>");
+						String disj[] = a.split("\\s+");
+=====================================================================
+Found a 9 line (25 tokens) duplication in the following files: 
+Starting at line 76 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/Bfs.java
+Starting at line 88 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/Bfs.java
+
+		System.out.println("Adding from dequeue 1" + que1.add(str));
+
+		// System.out.println("INdexer call doc_id  " + doc_id);
+
+		jd.putdoc(str, a);
+
+		jd.delvalue(str, 1);
+
+		(que11).remove();
+=====================================================================
+Found a 7 line (25 tokens) duplication in the following files: 
+Starting at line 62 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/CrawlerThread.java
+Starting at line 82 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/CrawlerThread.java
+
+								if (ReadUrl.count > ReadUrl.limit)
+									break;
+
+							}
+							a++;
+							System.out.println("Depth=" + a);
+						}
+=====================================================================
+Found a 13 line (25 tokens) duplication in the following files: 
+Starting at line 73 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/Datatransfer.java
+Starting at line 148 of /home/priyamvada/workspaceprojectassign1/Servlet/src/kl/se/Datatransfer.java
+
+			preparedStatement_ins_link.executeUpdate();
+
+			// execute insert SQL statement
+
+		} catch (SQLException e) {
+
+			System.out.println(e.getMessage());
+		}
+
+	}
+
+	// populate documents table
+	public void putdoc(String url, String crawled_on_date) throws Exception {
